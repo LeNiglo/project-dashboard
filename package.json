@@ -1,0 +1,20 @@
+{
+    "name":"ProjectDashboard",
+    "version":"1.0.0",
+    "description":"The goal is to replace your google home page by this project.",
+    "main":"server.js",
+    "repository":{
+        "type":"git",
+        "url":"git://github.com/leniglo/project-dashboard.git"
+    },
+    "dependencies":{
+        "mongodb":"~2.0",
+        "routes":"~2.0"
+    },
+    "author":"LeNiglo",
+    "license":"Apache 2.0",
+    "bugs":{
+        "url":"https://github.com/leniglo/project-dashboard/issues"
+    },
+    "homepage":"https://github.com/leniglo/project-dashboard"
+}
