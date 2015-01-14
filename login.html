@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta autor="LeNiglo" />
+	<link rel="favicon" type="image/x-icon" href="favicon.ico" />
+	<title>Login :: Project Dashboard</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!-- /CSS -->
+	<!-- SCRIPTS -->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/transit.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<!-- /SCRIPTS -->
+</head>
+<body>
+	<!-- HEADER -->
+	<header>
+		<script type="text/javascript">
+		(function($) {
+
+			$('header').load('include/header.html');
+
+		})(jQuery);
+		</script>
+	</header>
+	<!-- /HEADER -->
+	<div class="container-fluid text-center">
+		<div id="show_login" class="hidden container">
+			<form id="login" style="margin-top: 50px;">
+				<fieldset>
+					<legend>Login to ProjectDashboard !</legend>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="form-group">
+								<label for="l_email">Email</label>
+								<input name="email" id="l_email" type="email" class="form-control" placeholder="eMail" />
+							</div>
+							<div class="form-group">
+								<label for="l_password">Password</label>
+								<input name="password" id="l_password" type="password" class="form-control" placeholder="Password" />
+							</div>
+						</div>
+					</div>
+					<input type="submit" class="btn btn-lg btn-info col-xs-4 col-xs-offset-4" value="Login" />
+				</fieldset>
+			</form>
+			<form id="register" style="margin-top: 150px;">
+				<fieldset>
+					<legend>No Account ? Register for Free !</legend>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="form-group">
+								<label for="r_email">Email</label>
+								<input name="email" id="r_email" type="email" class="form-control" placeholder="eMail" />
+							</div>
+							<div class="form-group">
+								<label for="r_username">Username</label>
+								<input name="username" id="r_username" type="text" class="form-control" placeholder="Username" />
+							</div>
+							<div class="form-group">
+								<label for="r_password">Password</label>
+								<input name="password" id="r_password" type="password" class="form-control" placeholder="Password" />
+							</div>
+							<div class="form-group">
+								<label for="r_password_v">Password Again</label>
+								<input name="password_v" id="r_password_v" type="password" class="form-control" placeholder="Password" />
+							</div>
+						</div>
+					</div>
+					<input type="submit" class="btn btn-lg btn-info col-xs-4 col-xs-offset-4" value="Register" />
+				</fieldset>
+			</form>
+		</div>
+		<div id="show_logged" class="hidden container">
+			<h2>You are already logged in.</h2>
+			<br />
+			<a href="/" class="btn btn-default">Back to DashBoard</a>
+		</div>
+	</div>
+</body>
+</html>

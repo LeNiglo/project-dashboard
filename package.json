@@ -9,7 +9,9 @@
     },
     "dependencies":{
         "mongodb":"~2.0",
-        "routes":"~2.0"
+        "routes":"~2.0",
+        "MD5":"*",
+        "coupon-code":"*"
     },
     "author":"LeNiglo",
     "license":"Apache 2.0",
