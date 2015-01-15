@@ -57,7 +57,11 @@ Api = function() {
 						last_login: new Date(),
 						news: [],
 						timezone: 1,
-						weather: null,
+						locale: 'en',
+						weather: {
+							location: 'Paris, FR',
+							unit: 'c'
+						},
 						todos: [],
 						links: []
 					};

@@ -2,17 +2,21 @@
 <head>
 	<meta charset="utf-8" />
 	<meta autor="LeNiglo" />
-	<link rel="favicon" type="image/x-icon" href="favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 	<title>Project Dashboard</title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/simpleWeather.css" />
 	<!-- /CSS -->
 	<!-- SCRIPTS -->
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/transit.min.js"></script>
 	<script type="text/javascript" src="js/mustache.min.js"></script>
+	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script type="text/javascript" src="js/simpleWeather.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<!-- /SCRIPTS -->
 </head>
@@ -28,13 +32,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Project Dashboard</a>
+				<a class="navbar-brand" href=".">Project Dashboard</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav">
-					<li><a style="cursor: default;"><em>Hello <span id="your_username"></span>.</em></a></li>
+					<li><a style="cursor: default;">Hello <em id="your_username"></em>.</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="settings.html"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
@@ -53,7 +57,7 @@
 						<div id="tpl_clock" class="hidden">
 							<h1 class="page-header">O'CLOCK</h1>
 							<p id="time_zone">
-								<h1>{{hours}} : {{minutes}} : {{secondes}}</h1>
+								<h1>{{hours}} : {{minutes}} : {{seconds}}</h1>
 							</p>
 							<p id="date_zone">
 								<h2>{{date}}</h2>
@@ -63,25 +67,40 @@
 				</div>
 				
 				<div class="row">
+					<div class="container-fluid">
+						<div class="input-group">
+							<input id="g_search" class="form-control" type="text" placeholder="Google Search ..." />
+							<div class="input-group-addon">
+								<i class="glyphicon glyphicon-search"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
 					<div id="weather" class="container-fluid">
 						<div id="tpl_weather" class="hidden">
-							<h1 class="page-header">WEATHER</h1>
+							<h1 class="page-header">WEATHER : {{today.city}}</h1>
 							<div class="col-xs-6">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<h2>
+									<i class="icon-{{today.code}}"></i>
+									<br />
+									{{today.temp}} &deg;{{today.units.temp}}
+								</h2>
 							</div>
 							<div class="col-xs-6">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<h2>
+									<i class="icon-{{tomorrow.code}}"></i>
+									<br />
+									{{tomorrow.high}} &deg;{{today.units.temp}}
+								</h2>
 							</div>
+							{{^today}}
+							<h1 class="page-header">WEATHER : {{today.city}}</h1>
+							<div class="col-xs-12">
+								<h3>No Data Found</h3>
+							</div>
+							{{/today}}
 						</div>
 					</div>
 				</div>

@@ -1,11 +1,18 @@
+html {
+	width: 100%;
+	height: 100%;
+}
+
 body {
 	padding-top: 70px;
+	background-color: #ddd;
+	/*background: #1192d3 url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/austin-2.jpg) no-repeat bottom right;*/
+	background-size: cover;
 }
+.hidden{display:none;}
 
-.hidden {
-	display: none;
-}
-
-#loader {
-	
-}
+/* PlaceHolders for Google Search */
+#g_search::-webkit-input-placeholder{text-align:right;color:#777;}
+#g_search::-moz-placeholder{text-align:right;color:#777;}/* Firefox 19+ */
+#g_search:-moz-placeholder{text-align:right;color:#777;}/* Firefox 18- */
+#g_search:-ms-input-placeholder{text-align:right;color:#777;}
