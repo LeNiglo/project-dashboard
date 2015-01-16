@@ -1,6 +1,8 @@
 (function($) {
 
-	if (!window.localStorage) { return false; }
+	if (!window.localStorage) {
+		window.location = "about.html";
+	}
 
 	$(document).ready(function() {
 
@@ -16,22 +18,36 @@
 			e.preventDefault();
 			var $this = {
 				email: $(e.target).find('input[name="email"]').val(),
-				password: $(e.target).find('input[name="password"]').val()
+				password: md5($(e.target).find('input[name="password"]').val())
 			};
 
-			console.log($this);
+			$.getJSON('http://localhost:3000/login',
+				$this, function(data) {
+					if (typeof data.data === 'string') {
+						localStorage["project-dashboard.token"] = data.data;
+						window.location = ".";
+					} else if (data.data === false) {
+						$(e.target).find('input[name="password"]').val("");
+						$(e.target).find('input[name="password"]').focus();
+						alert("Wrong Password.");
+					} else if (data.data === null) {
+						$('#register').find('input[name="email"]').focus();
+						alert("Email or Username don't exists.");
+					} else {
+						alert("Error while logging in. :(");
+					} }, 'json');
 		});
 
 		/* Registration */
 		$('#register').submit(function(e) {
 			e.preventDefault();
-			var $this = {
-				email: $(e.target).find('input[name="email"]').val(),
-				username: $(e.target).find('input[name="username"]').val(),
-				password: $(e.target).find('input[name="password"]').val()
-			};
+			if ($(e.target).find('input[name="password"]').val() === $(e.target).find('input[name="password_v"]').val()) {
+				var $this = {
+					email: $(e.target).find('input[name="email"]').val(),
+					username: $(e.target).find('input[name="username"]').val(),
+					password: md5($(e.target).find('input[name="password"]').val())
+				};
 
-			if ($this.password === $(e.target).find('input[name="password_v"]').val()) {
 				$.getJSON('http://localhost:3000/register',
 					$this, function(data) {
 						if (typeof data.data === 'string') {
@@ -40,7 +56,7 @@
 						} else if (data.data === null) {
 							alert("Email or Username allready exists.");
 						} else {
-							alert("Error while registering :(");
+							alert("Error while registering. :(");
 						} }, 'json');
 			} else {
 				$(e.target).find('input[name="password_v"]').val("");

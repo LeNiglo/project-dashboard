@@ -69,7 +69,7 @@ Api = function() {
 					db.collection('users').insert(obj, function(err, result) {
 						res.statusCode = 200;
 						res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-						if (err) res.end(JSON.stringify({name: 'register', data: false}));					
+						if (err) res.end(JSON.stringify({name: 'register', data: false}));
 						else res.end(JSON.stringify({name: 'register', data: obj.token}));
 					});
 
@@ -107,7 +107,7 @@ this.login = function(req, res, match) {
 					db.collection('users').update({token: query.token}, {$set: {last_login: d}}, function(err, result) {
 						res.statusCode = 200;
 						res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-						res.end(JSON.stringify({name: 'login', data: true}));							
+						res.end(JSON.stringify({name: 'login', data: true}));
 					});
 				} else {
 					res.statusCode = 401;
@@ -116,7 +116,7 @@ this.login = function(req, res, match) {
 				}
 			});
 		} else {
-			db.collection('users').findOne({email: query.email}, function(err, result) {
+			db.collection('users').findOne({$or: [{email: query.email}, {username: query.username}]}, function(err, result) {
 
 				if (result) {
 					if (result.password === md5(query.password)) {
@@ -137,7 +137,7 @@ this.login = function(req, res, match) {
 				} else {
 					res.statusCode = 401;
 					res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-					res.end(JSON.stringify({name: 'login', data: false}));
+					res.end(JSON.stringify({name: 'login', data: null}));
 				}
 
 			});

@@ -13,7 +13,6 @@
 	<!-- SCRIPTS -->
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/transit.min.js"></script>
 	<script type="text/javascript" src="js/mustache.min.js"></script>
 	<script type="text/javascript" src="js/moment.min.js"></script>
 	<script type="text/javascript" src="js/simpleWeather.min.js"></script>
@@ -42,7 +41,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="settings.html"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+					<li><a href="#" id="logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
@@ -56,11 +55,11 @@
 					<div id="clock" class="container-fluid">
 						<div id="tpl_clock" class="hidden">
 							<h1 class="page-header">O'CLOCK</h1>
-							<p id="time_zone">
-								<h1>{{hours}} : {{minutes}} : {{seconds}}</h1>
+							<p>
+								<h1 id="time_zone">{{hours}} : {{minutes}} : {{seconds}}</h1>
 							</p>
-							<p id="date_zone">
-								<h2>{{date}}</h2>
+							<p>
+								<h2 id="date_zone">{{date}}</h2>
 							</p>
 						</div>
 					</div>
@@ -69,7 +68,7 @@
 				<div class="row">
 					<div class="container-fluid">
 						<div class="input-group">
-							<input id="g_search" class="form-control" type="text" placeholder="Google Search ..." />
+							<input id="g_search" class="form-control" type="text" placeholder="Google Search" />
 							<div class="input-group-addon">
 								<i class="glyphicon glyphicon-search"></i>
 							</div>
@@ -157,7 +156,6 @@
 					</div>
 				</div>
 			</div>
-			<hr class="clearfix" />
 		</div>
 	</div>
 </body>

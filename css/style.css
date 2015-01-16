@@ -5,14 +5,63 @@ html {
 
 body {
 	padding-top: 70px;
-	background-color: #ddd;
+	background-color: #fefefe;
 	/*background: #1192d3 url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/austin-2.jpg) no-repeat bottom right;*/
 	background-size: cover;
 }
+
+#clock #time_zone {
+	font-family: 'open24', 'Consola', serif;
+	font-size: 75px;
+}
+#clock #date_zone {
+	font-family: 'riot', 'Ubuntu', 'Verdana', 'Arial', sans-serif;
+}
+/* Setting good padding, margin, height for main blocs */
+#clock {
+	padding-bottom: 75px;
+}
+#weather {
+	padding-top: 50px;
+}
+#news {
+	min-height: 500px;
+	max-height: 800px;
+}
+#todos {
+	min-height: 300px;
+	max-height: 500px;
+}
+#links {
+	min-height: 150px;
+	max-height: 300px;
+}
 .hidden{display:none;}
+.page-header {
+	font-family: 'Ubuntu', 'Verdana', 'Arial', sans-serif;
+}
+input, select, textarea {
+	margin-top: 7px;
+}
 
 /* PlaceHolders for Google Search */
 #g_search::-webkit-input-placeholder{text-align:right;color:#777;}
 #g_search::-moz-placeholder{text-align:right;color:#777;}/* Firefox 19+ */
 #g_search:-moz-placeholder{text-align:right;color:#777;}/* Firefox 18- */
 #g_search:-ms-input-placeholder{text-align:right;color:#777;}
+
+@font-face {
+	font-family: 'open24';
+	src: url('../fonts/open24displaySt.ttf');
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'riot';
+	src: url('../fonts/lolfont.woff');
+	font-weight: normal;
+}
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('../fonts/Ubuntu-L.ttf');
+	font-weight: normal;
+}
