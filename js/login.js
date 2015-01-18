@@ -21,7 +21,7 @@
 				password: md5($(e.target).find('input[name="password"]').val())
 			};
 
-			$.getJSON('http://localhost:3000/login',
+			$.getJSON('https://localhost:3000/login',
 				$this, function(data) {
 					if (typeof data.data === 'string') {
 						localStorage["project-dashboard.token"] = data.data;
@@ -48,7 +48,7 @@
 					password: md5($(e.target).find('input[name="password"]').val())
 				};
 
-				$.getJSON('http://localhost:3000/register',
+				$.getJSON('https://localhost:3000/register',
 					$this, function(data) {
 						if (typeof data.data === 'string') {
 							localStorage["project-dashboard.token"] = data.data;

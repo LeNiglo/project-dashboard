@@ -5,13 +5,12 @@ html {
 
 body {
 	padding-top: 70px;
+	background: url(../img/bg2.png);
 	background-color: #fefefe;
-	/*background: #1192d3 url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/austin-2.jpg) no-repeat bottom right;*/
-	background-size: cover;
 }
 
 #clock #time_zone {
-	font-family: 'open24', 'Consola', serif;
+	font-family: 'digital', 'Consola', serif;
 	font-size: 75px;
 }
 #clock #date_zone {
@@ -39,6 +38,7 @@ body {
 .hidden{display:none;}
 .page-header {
 	font-family: 'Ubuntu', 'Verdana', 'Arial', sans-serif;
+	border-color: #333;
 }
 input, select, textarea {
 	margin-top: 7px;
@@ -51,8 +51,8 @@ input, select, textarea {
 #g_search:-ms-input-placeholder{text-align:right;color:#777;}
 
 @font-face {
-	font-family: 'open24';
-	src: url('../fonts/open24displaySt.ttf');
+	font-family: 'digital';
+	src: url('../fonts/digital-7.ttf');
 	font-weight: normal;
 }
 @font-face {

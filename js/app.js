@@ -9,7 +9,7 @@
 	var tpl_todos = null;
 	var tpl_links = null;
 	var tpl_weather = null;
-	var root_url = "http://localhost:3000";
+	var root_url = "https://localhost:3000";
 
 	var update_clock = function() {
 		var d = moment().utcOffset(parseInt(localStorage["project-dashboard.timezone"]));
@@ -51,9 +51,12 @@
 				/* SETTING THE WELCOME MESSAGE */
 				localStorage["project-dashboard.username"] = data.data.username;
 				$('#your_username').text(localStorage["project-dashboard.username"]);
+				localStorage["project-dashboard.color"] = data.data.color;
+				$('body').css("background-color", localStorage["project-dashboard.color"]);
 
 				/* SETTING THE CLOCK */
 				localStorage["project-dashboard.timezone"] = data.data.timezone;
+				localStorage["project-dashboard.locale"] = data.data.locale;
 				update_clock();
 
 				/* SETTING THE WEATHER */
@@ -83,6 +86,9 @@ $(document).ready(function() {
 			{token: localStorage["project-dashboard.token"]}, function(data) {
 				if (data.data === true) {
 					refresh_info();
+					if (window.webkitSpeechRecognition) {
+						voice_recognition();
+					}
 				} else {
 					localStorage.clear();
 					window.location = "login.html";
@@ -114,7 +120,7 @@ $(document).ready(function() {
 	/* Refresh Weather every 5 minutes */
 	window.setInterval(update_weather, 300000);
 
-	$("#g_search").focus();
+	//$("#g_search").focus();
 });
 
 })(jQuery);

@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="js/mustache.min.js"></script>
 	<script type="text/javascript" src="js/moment.min.js"></script>
 	<script type="text/javascript" src="js/simpleWeather.min.js"></script>
+	<script type="text/javascript" src="js/voice_recognition.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<!-- /SCRIPTS -->
 </head>
@@ -68,7 +69,8 @@
 				<div class="row">
 					<div class="container-fluid">
 						<div class="input-group">
-							<input id="g_search" class="form-control" type="text" placeholder="Google Search" />
+							<input id="g_search" class="form-control" type="text" placeholder="Google Search" style="margin-top: 0;" x-webkit-speech autofocus />
+
 							<div class="input-group-addon">
 								<i class="glyphicon glyphicon-search"></i>
 							</div>
@@ -113,7 +115,7 @@
 							<h1 class="page-header">NEWS (RSS)</h1>
 							{{#news}}
 							<div class="col-xs-12">
-								{{content}}
+								{{.}}
 							</div>
 							{{/news}}
 							{{^news}}
@@ -131,7 +133,7 @@
 							<h1 class="page-header">TODOS</h1>
 							<ol>
 								{{#todos}}
-								<li><label>{{content}} <input type="checkbox" /></label></li>
+								<li><label>{{.}} <input type="checkbox" /></label></li>
 								{{/todos}}
 								{{^todos}}
 								Nothing ToDo ! :)
@@ -146,7 +148,7 @@
 							<h1 class="page-header">LINKS</h1>
 							<ul>
 								{{#links}}
-								<li><a href="#">{{content}}</a></li>
+								<li><a href="#">{{.}}</a></li>
 								{{/links}}
 								{{^links}}
 								No Links added ...
