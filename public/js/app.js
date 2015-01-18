@@ -86,9 +86,11 @@ $(document).ready(function() {
 			{token: localStorage["project-dashboard.token"]}, function(data) {
 				if (data.data === true) {
 					refresh_info();
-					if (window.webkitSpeechRecognition) {
-						voice_recognition();
-					}
+					/* BETA
+					* 	if (window.webkitSpeechRecognition) {
+					*		voice_recognition();
+					*	}
+					*/
 				} else {
 					localStorage.clear();
 					window.location = "login.html";
