@@ -11,18 +11,25 @@
 	var tpl_weather = null;
 	var root_url = "https://localhost:3000";
 
+
+	var last_clock = null;
 	var update_clock = function() {
 		var d = moment().utcOffset(parseInt(localStorage["project-dashboard.timezone"]));
-		var hours = ("0" + d.hours()).slice(-2);
-		var minutes = ("0" + d.minutes()).slice(-2);
-		var seconds = ("0" + d.seconds()).slice(-2);
+		if (d.minutes() != last_clock) {
 
-		$('#clock').html(Mustache.render(tpl_clock, {
-			hours: hours,
-			minutes: minutes,
-			seconds: seconds,
-			date: d.format('ddd Do MMM YYYY (Z)')
-		} ));
+			last_clock = d.minutes()
+			var hours = ("0" + d.hours()).slice(-2);
+			var minutes = ("0" + d.minutes()).slice(-2);
+			var seconds = ("0" + d.seconds()).slice(-2);
+
+
+			$('#clock').html(tpl_clock({
+				hours: hours,
+				minutes: minutes,
+				seconds: seconds,
+				date: d.format('ddd Do MMM YYYY (Z)')
+			}));
+		}
 	};
 
 	var update_weather = function() {
@@ -31,12 +38,21 @@
 			woeid: '',
 			unit: localStorage["project-dashboard.weather.unit"],
 			success: function(weather) {
-				$("#weather").html(Mustache.render(tpl_weather, {today: weather, tomorrow: weather.forecast[0]} ));
+				$("#weather").html(tpl_weather({today: weather, tomorrow: weather.forecast[0]}));
 			},
 			error: function(error) {
-				$("#weather").html(Mustache.render(tpl_weather, {} ));
+				$("#weather").html(tpl_weather({}));
 			}
 		});
+	};
+
+	var update_feeds = function() {
+		$.getJSON(root_url+'/get_feeds',
+			{token: localStorage["project-dashboard.token"]},
+			function(data) {
+				data.data.forEach(function (e) { e.date = moment(e.date).fromNow(); });
+				$('#news').html(tpl_news({news: data.data}));
+			}, 'json');
 	};
 
 	var refresh_info = function() {
@@ -64,37 +80,28 @@
 				localStorage["project-dashboard.weather.unit"] = data.data.weather.unit;
 				update_weather();
 
-
 				/* LOADING NEWS, TODOS, LINKS */
-				$('#news').html(Mustache.render(tpl_news, {news: data.data.news} ));
-				$('#todos').html(Mustache.render(tpl_todos, {todos: data.data.todos} ));
-				$('#links').html(Mustache.render(tpl_links, {links: data.data.links} ));
+				update_feeds();
+				$('#todos').html(tpl_todos({todos: data.data.todos}));
+				$('#links').html(tpl_links({links: data.data.links}));
 			}, 'json');
 };
 
 
 $(document).ready(function() {
 
-	tpl_clock = $('#tpl_clock').html(); $('#tpl_clock').remove();
-	tpl_news = $('#tpl_news').html(); $('#tpl_news').remove();
-	tpl_todos = $('#tpl_todos').html(); $('#tpl_todos').remove();
-	tpl_links = $('#tpl_links').html(); $('#tpl_links').remove();
-	tpl_weather = $('#tpl_weather').html(); $('#tpl_weather').remove();
+	tpl_clock = Handlebars.compile($('#tpl_clock').html());
+	tpl_news = Handlebars.compile($('#tpl_news').html());
+	tpl_todos = Handlebars.compile($('#tpl_todos').html());
+	tpl_links = Handlebars.compile($('#tpl_links').html());
+	tpl_weather = Handlebars.compile($('#tpl_weather').html());
 
 	if (localStorage["project-dashboard.token"]) {
-		$.getJSON(root_url+'/login',
-			{token: localStorage["project-dashboard.token"]}, function(data) {
-				if (data.data === true) {
-					refresh_info();
-					/* BETA
-					* 	if (window.webkitSpeechRecognition) {
-					*		voice_recognition();
-					*	}
-					*/
-				} else {
-					localStorage.clear();
-					window.location = "login.html";
-				} }, 'json');
+		refresh_info();
+		/* BETA */
+		if (window.webkitSpeechRecognition) {
+			voice_recognition();
+		}
 	} else {
 		window.location = "login.html";
 	}
@@ -116,13 +123,14 @@ $(document).ready(function() {
 	});
 
 	/* Refresh clock in Real Time */
-	window.setInterval(update_clock, 500);
+	window.setInterval(update_clock, 1000);
+	/* Refresh feeds in Real Time */
+	window.setInterval(update_feeds, 30000);
 	/* Refresh User Informations every 5 minutes */
 	window.setInterval(refresh_info, 300000);
 	/* Refresh Weather every 5 minutes */
 	window.setInterval(update_weather, 300000);
 
-	//$("#g_search").focus();
 });
 
 })(jQuery);

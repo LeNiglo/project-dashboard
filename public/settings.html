@@ -12,8 +12,9 @@
 	<!-- SCRIPTS -->
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/moment.min.js"></script>
-	<script type="text/javascript" src="js/settings.js"></script>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/handlebars.js"></script>
+	<script type="text/javascript" src="js/app/settings.js"></script>
 	<!-- /SCRIPTS -->
 </head>
 <body>
@@ -34,7 +35,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="collapse">
 				<ul class="nav navbar-nav">
-					<li><a style="cursor: default;">Hello <em id="your_username"></em>.</a></li>
+					<li><a href="about.html">Hello <em id="your_username"></em>. <i class="glyphicon glyphicon-info-sign"></i></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="settings.html"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
@@ -86,11 +87,35 @@
 						</div>
 						<input type="submit" class="btn btn-primary" value="Update" />
 					</form>
-					<input type="color" class="form-control" />
-					todos &amp; links after !
+					<div>
+						<legend>Background Color <small>(prefer light colors)</small></legend>
+						<!-- Transform this into a select with a color set like white | darkgrey, white | black, black | green, ... -->
+						<div class="input-group">
+							<input class="form-control" id="color_picker" type="color" style="margin-top: 0;" />
+							<div class="input-group-addon">
+								<a href="#" id="change_color"><i class="glyphicon glyphicon-ok"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<form id="change_links"></form>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script id="tpl_links" type="text/x-handlebars-template">
+	<legend>Links</legend>
+	<table class='table'>
+	<tbody>
+	{{#links}}
+	<tr>
+	<th><img height='24' width='24' src='https://www.google.com/s2/favicons?domain={{url}}' /></th>
+	<td><a href='{{url}}'>{{title}} <small> &mdash; {{url}}</small></a></td>
+	<td><input type='checkbox' class='form-control' style="height: 16px;" /></td>
+	</tr>
+	{{/links}}
+	</tbody>
+	</table>
+	</script>
 </body>
 </html>

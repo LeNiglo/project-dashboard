@@ -2,7 +2,7 @@
 
 	voice_recognition = function() {
 
-		$('#g_search').attr("placeholder", 'Say "Okay Dashboard !"');
+		var old_placeholder = $('#g_search').attr("placeholder");
 
 		var recognition = new webkitSpeechRecognition();
 		var final_transcript = '';
@@ -13,6 +13,7 @@
 
 		recognition.onstart = function() {
 			console.log("SpeechRecognition Started.");
+			$('#g_search').attr("placeholder", 'Say "Okay Dashboard !"');
 		}
 		recognition.onresult = function(event) {
 			var interim_transcript = '';
@@ -30,6 +31,7 @@
 					final_transcript = '';
 					interim_transcript = '';
 					is_recording = true;
+					$('#g_search').addClass('hidden');
 					$('#final_span').parent().removeClass('hidden');
 				}
 			} else {
@@ -41,7 +43,9 @@
 		};
 		recognition.onerror = function(event) {
 			is_recording = false;
+			$('#g_search').removeClass('hidden');
 			$('#final_span').parent().addClass('hidden');
+			$('#g_search').attr("placeholder", old_placeholder);
 			console.log("Error.", event);
 		}
 		recognition.onend = function() {
@@ -50,7 +54,9 @@
 				window.location = "https://www.google.com#q="+$('#final_span').html();
 			else
 				console.log("SpeechRecognition Ended.");
+			$('#g_search').removeClass('hidden');
 			$('#final_span').parent().addClass('hidden');
+			$('#g_search').attr("placeholder", old_placeholder);
 		}
 
 		recognition.start();

@@ -4,6 +4,8 @@
 		window.location = "about.html";
 	}
 
+	var root_url = "https://localhost:3000";
+
 	$(document).ready(function() {
 
 		/* Choose What To Display */
@@ -21,7 +23,7 @@
 				password: md5($(e.target).find('input[name="password"]').val())
 			};
 
-			$.getJSON('https://localhost:3000/login',
+			$.getJSON(root_url+'/login',
 				$this, function(data) {
 					if (typeof data.data === 'string') {
 						localStorage["project-dashboard.token"] = data.data;
@@ -48,7 +50,7 @@
 					password: md5($(e.target).find('input[name="password"]').val())
 				};
 
-				$.getJSON('https://localhost:3000/register',
+				$.getJSON(root_url+'/register',
 					$this, function(data) {
 						if (typeof data.data === 'string') {
 							localStorage["project-dashboard.token"] = data.data;
