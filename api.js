@@ -22,16 +22,18 @@ Api = function(db) {
 
 				result.news.forEach(function(uri) {
 					feedparser.parseUrl(uri, function(error, meta, articles) {
-						articles.forEach(function (article) {
-							var obj = {
-								title: article.title,
-								description: article.description,
-								link: article.link,
-								date: article.date,
-								image: article.image
-							};
-							rss.push(obj);
-						});
+						if (!error) {
+							articles.forEach(function (article) {
+								var obj = {
+									title: article.title,
+									description: article.description,
+									link: article.link,
+									date: article.date,
+									image: article.image
+								};
+								rss.push(obj);
+							});
+						}
 						++count;
 					});
 				});

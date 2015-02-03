@@ -7,8 +7,10 @@ html {
 }
 
 body {
+	height: 100%;
+	width: 100%;
 	overflow: hidden;
-	background: url(../img/bg2.png);
+	background: url(../img/bg.png);
 	background-color: #fefefe;
 	margin: 0;
 	padding: 0;
@@ -17,7 +19,7 @@ body {
 
 #clock #time_zone {
 	font-family: 'Helvetica Neue', 'Ubuntu', 'Verdana', 'Arial', sans-serif;
-	font-size: 120px;
+	font-size: 16vh;
 	/*
 	font-family: 'digital', 'Consola', serif;
 	font-size: 75px;
@@ -34,16 +36,19 @@ body {
 	padding-top: 50px;
 }
 #news {
-	min-height: 500px;
-	max-height: 800px;
+	min-height: 25%;
+	max-height: 100%;
+	overflow: hidden;
 }
 #todos {
-	min-height: 300px;
-	max-height: 500px;
+	min-height: 25%;
+	max-height: 45vh;
+	overflow: hidden;
 }
 #links {
-	min-height: 150px;
-	max-height: 300px;
+	min-height: 25%;
+	max-height: 45vh;
+	overflow: hidden;
 }
 .hidden{display:none;}
 .page-header {

@@ -108,13 +108,15 @@ $(document).ready(function() {
 
 	$('#your_username').text(localStorage["project-dashboard.username"]);
 
+	$('#news').html(tpl_news({news: null}));
+
 	$('#g_search').keypress(function (e) {
 		if (e.which == 13) {
 			var query = $(this).val();
 			console.log("Google Search : '"+query+"'.");
 			window.location = "https://www.google.com#q="+query;
 		}
-	});
+	}).focus();
 
 	$('#logout').click(function(e) {
 		e.preventDefault();
