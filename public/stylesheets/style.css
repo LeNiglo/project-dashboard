@@ -1,0 +1,60 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+body > .container-fluid,
+body > .container {
+	height: 100%;
+	margin: auto;
+}
+
+body > .container-fluid > .row,
+body > .container > .row {
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+	margin: auto;
+}
+
+.hidden {
+	display: none;
+}
+
+#clock {
+	height: 25vh;
+	display: table;
+}
+
+#search {
+	height: 25vh;
+	display: table;
+}
+
+#weather {
+	height: 50vh;
+	display: table;
+}
+
+#clock > .section-wrapper,
+#search > .section-wrapper,
+#weather > .section-wrapper {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+}
+
+@media (min-width: 768px) {
+	#clock { height: 50vh; }
+	#search { height: 50vh; }
+	#weather { height: 50vh; }
+}
+
+@media (min-width: 992px) {
+	#clock { height: 100vh; }
+	#search { height: 100vh; }
+	#weather { height: 100vh; }
+}

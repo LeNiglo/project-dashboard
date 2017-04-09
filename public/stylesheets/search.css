@@ -1,0 +1,8 @@
+input#google-search {
+
+}
+
+input#google-search::-webkit-input-placeholder{text-align:right;color:#777;}
+input#google-search::-moz-placeholder{text-align:right;color:#777;}/* Firefox 19+ */
+input#google-search:-moz-placeholder{text-align:right;color:#777;}/* Firefox 18- */
+input#google-search:-ms-input-placeholder{text-align:right;color:#777;}

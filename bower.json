@@ -1,0 +1,26 @@
+{
+  "name": "ProjectDashboard",
+  "description": "The goal is to replace your new tab page by this project.",
+  "main": "www/index.html",
+  "authors": [
+    "LeNiglo"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/LeNiglo/project-dashboard",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "simpleWeather": "^3.1.0",
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "handlebars": "^4.0.5",
+    "js-md5": "md5#^0.4.2",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13"
+  }
+}

@@ -1,23 +1,18 @@
 {
-    "name":"ProjectDashboard",
-    "version":"1.0.0",
-    "description":"The goal is to replace your google home page by this project.",
-    "main":"server.js",
-    "repository":{
-        "type":"git",
-        "url":"git://github.com/leniglo/project-dashboard.git"
-    },
-    "dependencies":{
-        "mongodb":"~2.0",
-        "routes":"~2.0",
-        "MD5":"*",
-        "coupon-code":"*",
-        "ortoo-feedparser":"*"
-    },
-    "author":"LeNiglo",
-    "license":"Apache 2.0",
-    "bugs":{
-        "url":"https://github.com/leniglo/project-dashboard/issues"
-    },
-    "homepage":"https://github.com/leniglo/project-dashboard"
+  "name": "project-dashboard",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www --config nodemon.json",
+    "prod": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "hbs": "~4.0.1",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
+  }
 }
